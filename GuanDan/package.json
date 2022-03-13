@@ -1,0 +1,20 @@
+{
+  "name": "charlie",
+  "version": "1.0.0",
+  "description": "- Name: Charlie\r - Email: bian.yuq@northeastern.edu\r - Role: img in java\r - Card game choice: Throwing Eggs (Guàn Dàn)",
+  "main": "Card.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon gdapp.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

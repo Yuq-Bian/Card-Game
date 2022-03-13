@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(201, 219, 224);
+    font-family: "Brush Script MT", "Copperplate", cursive;
+    font-weight: 600;
+    font-size: large;
+    overflow: hidden;
+  }
+  
+#H1 {
+    text-align: center;
+    padding: 10px;
+}
+
+#buttonGroup{
+  text-align: center;
+}
+
+#SELECT{
+  text-align: center;
+  height: 30px;
+}
+
+#playersDiv{
+  text-align: center;
+}
+
+#CARDS{
+  padding: 20px;
+}
+
+.comboButton{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.modifyHook:hover {
+  cursor: pointer;
+}
