@@ -1,5 +1,4 @@
-import Utils from "./Utils.js";
-import Player from "./Player.js";
+import Utils from './Utils.js';
 
 export default class Card {
 

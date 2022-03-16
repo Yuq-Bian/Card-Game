@@ -6,7 +6,7 @@ export default class Utils {
     static lab(x) { return '<span class="LAB">' + x + '</span>'; }
     static rnd(k) { return Math.floor(Math.random() * k); }
     static msg(x) { this.inject('MSG', x); }
-    static invalid() { alert("invalid!"); }
+    static invalid() { alert('Invalid!'); }
     static showCards(list) {
         let result = '', sep = '';
         for (let i = 0; i < list.length; i++) {
@@ -17,7 +17,7 @@ export default class Utils {
     }
     static showPlayerName(p) {
         if (p == null) {
-            return "";
+            return '';
         }
         return p.name;
     }

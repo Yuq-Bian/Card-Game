@@ -1,8 +1,8 @@
 import Card from './Card.js';
 import Player from './Player.js';
 import Trick from './Trick.js';
-import Utils from "./Utils.js";
-import Loc from "./Loc.js";
+import Utils from './Utils.js';
+import Loc from './Loc.js';
 
 export default class Hand {
 
@@ -71,7 +71,7 @@ export default class Hand {
         } else {
             curPlayer = this.tributePayerList[0];
             Utils.inject('PLAYER', Utils.showPlayerName(curPlayer));
-            Utils.msg('It is ' + curPlayer.name + "'s turn." + "Pay a tribute.");
+            Utils.msg('It is ' + curPlayer.name + "'s turn." + 'Pay a tribute.');
             this.showLegalTributeCard();
             cardEvent = window.tributeCard;
         }
@@ -91,13 +91,13 @@ export default class Hand {
         if (this.tributeCards.length == 2 && this.tributeCards[0].iR == this.tributeCards[1].iR) {
             //tie, user select
             curPlayer = this.tributeReceiverList[0];
-            Utils.msg('It is ' + curPlayer.name + "'s turn." + "Select a tribute card.");
+            Utils.msg('It is ' + curPlayer.name + "'s turn." + 'Select a tribute card.');
             Utils.inject('CARDS', showTributeSelRed(this.tributeCards));//show tributeDeck with card event
             cardEvent = selectTributeCard;
         } else {
             Utils.msg('Show tribute cards.');
             Utils.inject('CARDS', Loc.showAll());//show tributeDeck without event
-            Utils.inject('ACTION', "return process");
+            Utils.inject('ACTION', 'return process');
             takeAction = window.returnProcess;
             // auto allocate tribute cards
             this.allocateTributeCard();

@@ -1,17 +1,17 @@
-import Card from "./Card.js";
-import Loc from "./Loc.js";
-import Player from "./Player.js";
-import Utils from "./Utils.js";
-import Combo from "./Combo.js";
-import Hand from "./Hand.js";
-import Legal from "./Legal.js";
-import Trick from "./Trick.js";
+import Card from './Card.js';
+import Loc from './Loc.js';
+import Player from './Player.js';
+import Utils from './Utils.js';
+import Combo from './Combo.js';
+import Hand from './Hand.js';
+import Legal from './Legal.js';
+import Trick from './Trick.js';
 
 //-------------------global variables----------------------------     
 window.iLevel = 0;
-window.deck = new Loc("Deck", null);
-window.discard = new Loc("Discard Deck", null);
-window.tributeDeck = new Loc("Tribute Deck", null);
+window.deck = new Loc('Deck', null);
+window.discard = new Loc('Discard Deck', null);
+window.tributeDeck = new Loc('Tribute Deck', null);
 window.nPlayer = 4;
 window.nHand = 27;
 window.curPlayer = null;
@@ -105,7 +105,7 @@ function playFirstHand() {
 
 function selectOrCancelEvent(iC) {
     let selCard = Card.all[iC];
-    if (selCard.loc.player != curPlayer) { alert("It is " + curPlayer.name + "'s move."); return; }
+    if (selCard.loc.player != curPlayer) { alert('It is ' + curPlayer.name + "'s move."); return; }
     if (selCard.loc == curPlayer.hand) {// go to selected from hand
         selCard.loc = curPlayer.selected;
         curCombo.all.push(selCard);
@@ -147,7 +147,7 @@ function generateSelectionButtons() {
 }
 
 window.chooseCombo = function (k) {
-    Utils.inject("SELECT", '');
+    Utils.inject('SELECT', '');
     curCombo.iCombo = potentialCombos[k][0];
     curCombo.iBomb = potentialCombos[k][1];
     curCombo.iRank = potentialCombos[k][2];
@@ -172,7 +172,7 @@ function afterSubmit() {
     if (curHand.isOver()) {
         curHand.completeRankList();
         curPlayer = null;
-        Utils.inject("ACTION", "next hand");
+        Utils.inject('ACTION', 'next hand');
         Utils.msg('Hand over!');
         takeAction = nextHand;
         takeAction2 = Utils.invalid;
@@ -192,7 +192,7 @@ function submitCards() {
         curCombo.iBomb = potentialCombos[0][1];
         curCombo.iRank = potentialCombos[0][2];
     } else {//potentialCombos.length > 1, user select
-        Utils.inject("SELECT", generateSelectionButtons());
+        Utils.inject('SELECT', generateSelectionButtons());
         Utils.msg('It is ' + curPlayer.name + "'s turn. Please select a combo.");
         return;
     }
@@ -202,7 +202,7 @@ function submitCards() {
 //------------------------------pass this turn--------------------------------
 window.passThisTurn = function passThisTurn() {
     if (curHand.t.lead == null) {//curPlayer is the first turn
-        alert("can not pass first turn.")
+        alert('can not pass first turn.');
         return;
     }
     // now can pass this turn
@@ -231,8 +231,8 @@ function nextHand() {
     Utils.inject('ACTION', 'submit cards');
     takeAction = Utils.invalid;
     if (curHand.playerRankList[0].level == 12) {// game over
-        Utils.inject("H2", "Game over. Winner is team: " + curHand.playerRankList[0].team);
-        Utils.inject("ACTION", "new game");
+        Utils.inject('H2', 'Game over. Winner is team: ' + curHand.playerRankList[0].team);
+        Utils.inject('ACTION', 'new game');
         takeAction = initialize;
         return;
     }
@@ -261,13 +261,13 @@ window.tributeCard = function (iC) {
     } else if (curHand.tributePayerList.length == 2 && curPlayer == curHand.tributePayerList[0]) {
         curPlayer = curHand.tributePayerList[1];
         Utils.inject('PLAYER', Utils.showPlayerName(curPlayer));
-        Utils.msg('It is ' + curPlayer.name + "'s turn." + "Pay a tribute.");
+        Utils.msg('It is ' + curPlayer.name + "'s turn." + 'Pay a tribute.');
         // show legal tribute cards with event
         curHand.showLegalTributeCard();
     } else if (curHand.tributePayerList.length == 2 && curPlayer == curHand.tributePayerList[1]) {
         curHand.showTributeDeck();
     } else {
-        alert("should not happen")
+        alert('should not happen');
     }
 }
 
@@ -278,7 +278,7 @@ function returnCard(iC) {
         curPlayer = curHand.tributePayerList[0];//ready to play 
         repaint();
         Utils.msg('It is ' + curPlayer.name + "'s turn.");
-        Utils.inject("ACTION", "submit cards");
+        Utils.inject('ACTION', 'submit cards');
         takeAction = Utils.invalid;
         takeAction2 = window.passThisTurn;
         cardEvent = selectOrCancelEvent;
@@ -286,14 +286,14 @@ function returnCard(iC) {
         selCard.loc = curHand.receiveReturnCardOrder[0].hand;
         curPlayer = curHand.tributeReceiverList[1];
         Utils.inject('PLAYER', curPlayer.name);
-        Utils.msg('It is ' + curPlayer.name + "'s turn." + "Return a card.");
+        Utils.msg('It is ' + curPlayer.name + "'s turn." + 'Return a card.');
         curHand.showLegalReturnCard();
     } else if (curHand.tributePayerList.length == 2 && curPlayer == curHand.tributeReceiverList[1]) {
         selCard.loc = curHand.receiveReturnCardOrder[1].hand;
         curPlayer = curHand.receiveReturnCardOrder[0];//ready to play
         repaint();
         Utils.msg('It is ' + curPlayer.name + "'s turn.");
-        Utils.inject("ACTION", "submit cards");
+        Utils.inject('ACTION', 'submit cards');
         takeAction = Utils.invalid;
         takeAction2 = window.passThisTurn;
         cardEvent = selectOrCancelEvent;
@@ -316,13 +316,13 @@ function selectTributeCard(iC) {// tribute cards tie, winner select
         }
     }
     Utils.inject('CARDS', Loc.showAll());
-    Utils.inject("Action", "return process")
+    Utils.inject('Action', 'return process');
     takeAction = returnProcess;
 }
 
 window.returnProcess = function () {
     curPlayer = curHand.tributeReceiverList[0];
-    Utils.msg('It is ' + curPlayer.name + "'s turn." + "Return a card.");
+    Utils.msg('It is ' + curPlayer.name + "'s turn." + 'Return a card.');
     curHand.showLegalReturnCard();
     cardEvent = returnCard;
 }

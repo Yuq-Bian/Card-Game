@@ -1,5 +1,5 @@
-import Card from "./Card.js";
-import Utils from "./Utils.js";
+import Card from './Card.js';
+import Utils from './Utils.js';
 
 export default class Loc {
 

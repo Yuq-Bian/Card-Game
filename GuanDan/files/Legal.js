@@ -1,5 +1,4 @@
-import Combo from "./Combo.js";
-import Card from "./Card.js";
+import Card from './Card.js';
 
 export default class Legal {
 
